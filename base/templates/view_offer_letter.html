@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}View Offer Letter{% endblock %}
+{% block content %}
+<h2>Offer Letter for {{ offer_letter.candidate.name }}</h2>
+<p><strong>Agreement Date:</strong> {{ offer_letter.agreement_date }}</p>
+<p><strong>Created By:</strong> {{ offer_letter.created_by.username }}</p>
+<p><strong>Interviewer:</strong> {{ offer_letter.interviewer }}</p>
+<p><strong>Referrer:</strong> {{ offer_letter.referrer }}</p>
+<a href="{% url 'base:download_offer_letter' offer_letter.pk %}">Download PDF</a>
+{% endblock %}

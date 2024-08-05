@@ -1,0 +1,25 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Offer Letter System{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/m.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'base:candidate_list' %}">Candidates</a></li>
+            <li><a href="{% url 'base:offer_letter_list' %}">Offer Letters</a></li>
+            <li><a href="{% url 'base:candidate_add' %}">Add Candidate</a></li>
+            <li><a href="{% url 'base:offer_letter_create'%}">create_offer_letter</a></li>
+            <li><a href="{% url 'base:logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

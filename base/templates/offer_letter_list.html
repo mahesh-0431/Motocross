@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Offer Letter List{% endblock %}
+{% block content %}
+<h2>Offer Letter List</h2>
+<a href="{% url 'base:offer_letter_create' %}">Create Offer Letter</a>
+<ul>
+    {% for offer_letter in offer_letters %}
+        <li>{{ offer_letter.candidate.name }} - {{ offer_letter.agreement_date }}
+            <a href="{% url 'base:offer_letter_view' offer_letter.pk %}">View</a>
+            <a href="{% url 'base:download_offer_letter' offer_letter.pk %}">Download</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

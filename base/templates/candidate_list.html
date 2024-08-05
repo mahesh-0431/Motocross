@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Candidate List{% endblock %}
+{% block content %}
+<h2>Candidate List</h2>
+<a href="{% url 'base:candidate_add' %}">Add Candidate</a>
+<ul>
+    {% for candidate in candidates %}
+        <li>{{ candidate.name }} - {{ candidate.designation }}
+            <a href="{% url 'base:candidate_edit' candidate.pk %}">Edit</a>
+            <a href="{% url 'base:candidate_delete' candidate.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!-- templates/offer_letter_pdf.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offer Letter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content {
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Offer Letter</h1>
+    </div>
+    <div class="content">
+        <p><strong>Candidate:</strong> {{ offer_letter.candidate.name }}</p>
+        <p><strong>Agreement Date:</strong> {{ offer_letter.agreement_date }}</p>
+        <p><strong>Created By:</strong> {{ offer_letter.created_by.username }}</p>
+        <p><strong>Interviewer:</strong> {{ offer_letter.interviewer }}</p>
+        <p><strong>Referrer:</strong> {{ offer_letter.referrer }}</p>
+    </div>
+</body>
+</html>
