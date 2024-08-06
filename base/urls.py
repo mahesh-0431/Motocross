@@ -1,9 +1,10 @@
-# offerletter/urls.py
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path("", views.login, name="home"),
+    path("", auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
+    path("home/", views.home, name="home"),
     path("signup/", views.authView, name="authView"),
     path("accounts/", include("django.contrib.auth.urls")),
     path('candidates/', views.candidate_list, name='candidate_list'),
