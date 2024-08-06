@@ -1,10 +1,44 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% block title %}View Offer Letter{% endblock %}
 {% block content %}
-<h2>Offer Letter for {{ offer_letter.candidate.name }}</h2>
-<p><strong>Agreement Date:</strong> {{ offer_letter.agreement_date }}</p>
-<p><strong>Created By:</strong> {{ offer_letter.created_by.username }}</p>
-<p><strong>Interviewer:</strong> {{ offer_letter.interviewer }}</p>
-<p><strong>Referrer:</strong> {{ offer_letter.referrer }}</p>
+<h1>OFFER Letter</h1>
+<div class="container">
+    <div class="header">
+        <h1>Company Name</h1>
+        <p>Company Address</p>
+    </div>
+    <div class="content">
+        <p>Date: {{ offer_letter.agreement_date }}</p>
+
+        <p>To,</p>
+        <p>{{ offer_letter.candidate.name }}</p>
+        <p>{{ offer_letter.candidate.address }}</p>
+
+        <p>Dear {{ offer_letter.candidate.name }},</p>
+
+        <p>We are pleased to offer you the position of <strong>{{ offer_letter.candidate.designation }}</strong> at our company.</p>
+
+        <p>Your joining date will be <strong>{{ offer_letter.candidate.date_of_joining }}</strong>. You will be paid a monthly salary of <strong>{{ offer_letter.candidate.salary }}</strong>.</p>
+
+        <p>We look forward to having you on our team. If you have any questions, please feel free to reach out to us.</p>
+
+        <p>Sincerely,</p>
+        <p>{{ offer_letter.created_by }}</p>
+
+        <div class="signature">
+            <div>
+                <p><strong>Interviewer:</strong></p>
+                <p>{{ offer_letter.interviewer }}</p>
+            </div>
+            <div>
+                <p><strong>Referrer:</strong></p>
+                <p>{{ offer_letter.referrer }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Company Footer Information</p>
+    </div>
+</div>
 <a href="{% url 'base:download_offer_letter' offer_letter.pk %}">Download PDF</a>
 {% endblock %}
