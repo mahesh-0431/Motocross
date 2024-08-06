@@ -9,10 +9,9 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
+
 from pathlib import Path
 
-WKHTMLTOPDF_CMD = os.path.join('C:', os.sep, 'Program Files', 'wkhtmltopdf', 'bin', 'wkhtmltopdf.exe')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'base'
+    'base',
+    'wkhtmltopdf'
 ]
 
 MIDDLEWARE = [
@@ -125,5 +125,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+LOGIN_REDIRECT_URL="base:home"
 LOGOUT_REDIRECT_URL = "base:login"
