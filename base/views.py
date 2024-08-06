@@ -1,13 +1,14 @@
-# offerletter/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Candidate, OfferLetter
 from .forms import CandidateForm, OfferLetterForm
 from django.http import HttpResponse
-from django.conf import settings
 from django.template.loader import render_to_string
 import pdfkit
+
+
+config=pdfkit.configuration(wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
 
 @login_required
 def add_candidate(request):
@@ -67,29 +68,30 @@ def offer_letter_list(request):
 def view_offer_letter(request, pk):
     offer_letter = get_object_or_404(OfferLetter, pk=pk)
     return render(request, 'view_offer_letter.html', {'offer_letter': offer_letter})
+
 @login_required
 def download_offer_letter(request, pk):
     offer_letter = get_object_or_404(OfferLetter, pk=pk)
     html = render_to_string('offer_letter_pdf.html', {'offer_letter': offer_letter})
-
-    # Configure pdfkit with the wkhtmltopdf path
-    config = pdfkit.configuration(wkhtmltopdf=settings.WKHTMLTOPDF_CMD)
     pdf = pdfkit.from_string(html, False, configuration=config)
-
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="offer_letter_{pk}.pdf"'
     return response
 
+@login_required
+def login(request):
+    return render(request, 'registration/login.html')
 
 def authView(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST or None)
         if form.is_valid():
             form.save()
-            return redirect("base:home")
+            return redirect("login")
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
 
-def login(request):
+@login_required
+def home(request):
     return render(request, 'home.html')
